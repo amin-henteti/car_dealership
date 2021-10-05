@@ -1,0 +1,244 @@
+    1  curl -L https://github.com/docker/machine/releases/download/v0.5.5/docker-machine_windows-amd64.exe > "$HOME/bin/docker-machine.exe" &&  curl -L https://github.com/docker/machine/releases/download/v0.5.5/docker-machine_windows-amd64.exe > "$HOME/bin/docker-machine.exe"
+    2  curl -L https://github.com/docker/machine/releases/download/v0.5.5/docker-machine_windows-amd64.exe
+    3  docker-machine version
+    4  chmod +x "$HOME/bin/docker-machine-Windows.exe" 
+    5  docker-machine version
+    6  docker-machine-Windows version
+    7  if [[ ! -d "$HOME/bin" ]]; then mkdir -p "$HOME/bin"; fi &&     curl -L https://github.com/docker/machine/releases/download/v0.5.5/docker-machine_windows-amd64.exe > "$HOME/bin/docker-machine.exe" && if [[ ! -d "$HOME/bin" ]]; then mkdir -p "$HOME/bin"; fi
+    8  docker-machine version
+    9  docker.exe version
+   10  docker.exe pull ubuntu
+   11  docker.exe --help
+   12  git commit -m 'initial commit'
+   13  git config --global user.name "amin henteti"
+   14  git config --global user.email "aminhenteti21@gmail.com"
+   15  git commit -m 'initial commit'
+   16  git config --list
+   17  git config --global user.name
+   18  git config --system user.name
+   19  mkdir git_course
+   20  cd git_course/
+   21  mkdir new
+   22  cd new
+   23  git init
+   24  ls
+   25  ls -la
+   26  git status
+   27  cd ..
+   28  pwd
+   29  git init new2
+   30  cd new2
+   31  ls -la
+   32  touch file.html
+   33  git status
+   34  git add file.html 
+   35  git status 
+   36  git commit -m 'first commit'
+   37  git status
+   38  clear
+   39  ls -la
+   40  echo "<html> </html>" >> file.html 
+   41  git status
+   42  git add .
+   43  git status
+   44  git commit 
+   45  git status
+   46  git log
+   47  git log --oneline
+   48  git status
+   49  git diff file.html
+   50  vi file.html 
+   51  git diff file.html
+   52  git add .
+   53  git diff file.html
+   54  git diff --staged
+   55  git log --oneline
+   56  git diff --staged HEAD
+   57  git diff --staged HEAD~1
+   58  git status
+   59  git commit 
+   60  git diff --staged HEAD
+   61  git diff --staged HEAD~1
+   62  git log
+   63  git log --oneline
+   64  cat fileA
+   65  cat file.html 
+   66  fit checkout HEAD~1 file.html 
+   67  git checkout HEAD~1 file.html 
+   68  cat file.html 
+   69  git status
+   70  git commit -m 'recovered to previous"
+   71  '
+   72  git log --oneline
+   73  git checkout HEAD~1 31c0d
+   74  git checkout HEAD~1 31c0d
+   75  git checkout  HEAD~1 31c0d
+   76  git checkout 4eb8746 file.html
+   77  cat file.html 
+   78  git status
+   79  git commit -m 'recovered to last version'
+   80  git log --oneline
+   81  touch a.txt
+   82  touch b.txt
+   83  git ls-files --staged
+   84  git ls-files --stage
+   85  git add .
+   86  git ls-files --stage
+   87  git rm a.txt 
+   88  git ls-files --stage
+   89  git status
+   90  git commit -m 'new files'
+   91  git status
+   92  git ls-files --stage
+   93  git rm a.txt 
+   94  git ls-files --stage
+   95  ls -la
+   96  git rm --cached b.txt
+   97  git ls-files --stage
+   98  ls -la
+   99  git status
+  100  rm b.txt
+  101  git status
+  102  git commit -m 'deleted a b'
+  103  git log --oneline
+  104  git branch
+  105  git checkout master
+  106  git branch
+  107  git checkout 87bcdda a.txt c.txt
+  108  git checkout 87bcdda a.txt b.txt
+  109  ls -la
+  110  git sttus
+  111  git status
+  112  git commit -m 'returned a b'
+  113  ls -la
+  114  git status
+  115  git log --oneline
+  116  echo 'modify a.txt' >> a.txt
+  117  git status
+  118  vi .ignore
+  119  git status
+  120  vi .gitignore
+  121  git status
+  122  git add .
+  123  git commit -m 'added .gitignore'
+  124  git status
+  125  touch c.txt
+  126  vi .gitignore 
+  127  git add c.txt
+  128  git status
+  129  git add -f c.txt
+  130  git status
+  131  git commit -m 'added c.txt'
+  132  git status
+  133  git add .
+  134  git commit -m 'added .gitignore'
+  135  git status
+  136  git mv a.txt aa.txt 
+  137  git status
+  138  git add .
+  139  git commmit -m 'rename'
+  140  git commit -m 'rename'
+  141  git status
+  142  mv b.txt bb.txt
+  143  git status
+  144  mv bb.txt bbb.tt
+  145  git status
+  146  git add bbb.tt 
+  147  git status
+  148  git add aa.txt 
+  149  git status
+  150  vi bbb.tt
+  151  vi bbb.tt
+  152  git status
+  153  git rm bbb.tt
+  154  git status
+  155  git rm -stage bbb.tt
+  156  git rm --cached bbb.tt
+  157  cat .gitignore
+  158  cat >> .gitignore
+  159  cat .gitignore
+  160  git status
+  161  clear
+  162  cd ..
+  163  mkdir assignment2
+  164  cd assignment2/
+  165  git init
+  166  touch a.txt b.txt
+  167  ls -la
+  168  git add .
+  169  git status
+  170  git rm -f a.txt
+  171  git status
+  172  ls -la
+  173  git rm --cached b.twt
+  174  git rm --cached b.txt
+  175  git status
+  176  ls -la
+  177  git ls-files -stage
+  178  git ls-files --stage
+  179  python -m venv cardj
+  180  source cardj/Scripts/activate
+  181  pip install --update
+  182  pip --update
+  183  pip install pip --update
+  184  pip install --update pip
+  185  python -m pip install --update pip
+  186  python -m pip install --upgrade pip
+  187  pip install django
+  188  django-admin startproject carwebsite .
+  189  echo /h
+  190  echo /history
+  191  python manage.py runserver
+  192  python manage.py startapp pages
+  193  code .
+  194  python manage.py runserver
+  195  python manage.py runserver
+  196  git init
+  197  git add -A
+  198  git check-ignore -v -- bower_components/afile
+  199  git check-ignore -v -- cardj/
+  200  git init
+  201  git check-ignore -v -- cardj/
+  202  git add -A
+  203  git init
+  204  git add .
+  205  git status
+  206  git commit -m "begin the project"
+  207  git remote add origin https://github.com/amin-henteti/carwebsite_django.git
+  208  git push -u origin main
+  209  git push -u origin main
+  210  git push -u origin maingit push -u origin main^V
+  211  git branch -M main
+  212  git remote add origin https://github.com/amin-henteti/carwebsite_django.git
+  213  git push -u origin main
+  214  git status
+  215  git add -A
+  216  git commit -m 'added new test template'
+  217  git push origin master
+  218  git push main master
+  219  git push master
+  220  git push -u origin master
+  221  git push -u origin main
+  222  git status
+  223  git status
+  224  git add -A
+  225  git commit -m "test"
+  226  git push -u origin master
+  227  git push -u origin main
+  228* doskey /history > beginning_commands_history.tx
+  229  echo beginning_commands_history.txt 
+  230  git reflog
+  231  /hisory
+  232  /history
+  233  /h
+  234  doskey /h
+  235  doskey 
+  236  doskey /history
+  237  history
+  238  history > beginning_commands_history.txt 
+  239  echo history > beginning_commands_history.txt 
+  240  echo $history > beginning_commands_history.txt 
+  241  cat history > beginning_commands_history.txt 
+  242  history > beginning_commands_history.txt 
+  243  history
+  244  history > beginning_commands_history.csv
