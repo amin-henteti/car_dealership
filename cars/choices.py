@@ -1,7 +1,7 @@
 availibility_choices = (
-    ('For Rent', 'Rent'), 
-    ('For Sale', 'Sale'),
-    ('Not avalable', 'Not avalable')
+    ('Rent', 'For Rent', ), 
+    ('Sale', 'For Sale', ),
+    ('Not available', 'Not available')
 )
 
 state_choices = (

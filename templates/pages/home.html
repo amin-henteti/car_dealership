@@ -107,37 +107,35 @@
         <!-- Slick slider area start -->
         <div class="slick-slider-area clearfix">
             <div class="row slick-carousel" data-slick='{"slidesToShow": 3, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+              {% for car in featured_cars %} 
                 <div class="slick-slide-item">
                     <div class="car-box-3">
                         <div class="car-thumbnail">
                             <a href="car-details.html" class="car-img">
                                 <div class="tag-2">Featured</div>
                                 <div class="price-box">
-                                    <span class="del"><del>$805.00</del></span>
-                                    <br>
-                                    <span>$780.00</span>
+                                    <!--span class="del"><del>{$805.00}</del></span>
+                                    <br-->
+                                    <span>{{ car.price}} $</span>
                                 </div>
-                                <img class="d-block w-100" src="{% static 'img/car/car-1.jpg' %}" alt="car">
+                                <img class="d-block w-100" src="{{car.main_image.url}}" alt="car">
                             </a>
                             <div class="carbox-overlap-wrapper">
                                 <div class="overlap-box">
                                     <div class="overlap-btns-area">
                                         <div class="car-magnify-gallery">
-                                            <a href={% static 'img/car/car-1.jpg' %} class="overlap-btn">
+                                            <a href={{car.main_image.url}}  class="overlap-btn" >
                                                 <i class="fa fa-expand"></i>
-                                                <img class="hidden" src={% static 'img/car/car-1.jpg' %}>
+                                                <img class="hidden" src={{car.main_image.url}} style="min-height: 100px; max-height: 100px;">
+                                            </a> 
+                                            <a href={{car.views_images_1.url}} class="hidden">
+                                                <img class="hidden" src={{car.views_images_1.url}}>
                                             </a>
-                                            <a href={% static 'img/car/car-2.jpg' %} class="hidden">
-                                                <img class="hidden" src={% static 'img/car/car-2.jpg' %}>
+                                            <a href={{car.views_images_2.url}} class="hidden">
+                                                <img class="hidden" src={{car.views_images_2.url}}>
                                             </a>
-                                            <a href={% static 'img/car/car-3.jpg' %} class="hidden">
-                                                <img class="hidden" src={% static 'img/car/car-3.jpg' %}>
-                                            </a>
-                                            <a href={% static 'img/car/car-4.jpg' %} class="hidden">
-                                                <img class="hidden" src={% static 'img/car/car-4.jpg' %}>
-                                            </a>
-                                            <a href={% static 'img/car/car-5.jpg' %} class="hidden">
-                                                <img class="hidden" src={% static 'img/car/car-5.jpg' %}>
+                                            <a href={{car.views_images_3.url}} class="hidden">
+                                                <img class="hidden" src={{car.views_images_3.url}}>
                                             </a>
                                         </div>
                                     </div>
@@ -146,24 +144,29 @@
                         </div>
                         <div class="detail">
                             <h1 class="title">
-                                <a href="car-details.html">Lamborghini Huracán</a>
+                                <a href="car-details.html">{{car.title}}</a>
                             </h1>
                             <div class="location">
                                 <a href="car-details.html">
-                                    <i class="flaticon-pin"></i>123 Kathal St. Tampa City,
+                                    <i class="flaticon-pin"></i>{{car.provinance}} {{car.location}}
                                 </a>
                             </div>
                             <ul class="facilities-list clearfix">
-                                <li>Petrol</li>
-                                <li>4,000 km</li>
-                                <li>Manual</li>
-                                <li>Sport</li>
-                                <li>white</li>
-                                <li>2020</li>
+                                <li>{{car.fuel_type}}</li>
+                                <li>{{car.miles}} km</li>
+                                <li>{{car.transmission}}</li>
+                                                                   
+                                {% for f in car.features %}
+                                    <li>{{f}}</li>
+                                {% endfor %}
+                                
+                                <li>{{car.color}}</li>
+                                <li>{{car.year}}</li>
                             </ul>
                         </div>
                     </div>
                 </div>
+              {% endfor %}
             </div>
             <div class="slick-btn">
                 <div class="slick-prev slick-arrow-buton sab-4">

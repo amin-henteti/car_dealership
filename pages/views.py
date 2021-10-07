@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from .models import Member
-
+from cars.models import Car
 # Create your views here.
 global data
 data = {
@@ -9,7 +9,9 @@ data = {
 }
 
 def home(request):
+    featured_cars = Car.objects.order_by('-price').filter(availibility='Sale')
     data2 = {
+        'featured_cars': featured_cars,
         'members' : Member.objects.all(),
     }
     return render(request, "pages/home.html", {**data, **data2})
