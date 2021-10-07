@@ -10,7 +10,7 @@
         <div class="breadcrumb-areas">
             <h1>About Us</h1>
             <ul class="breadcrumbs">
-                <li><a href={% url 'home' %}>Home</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
                 <li class="active">About Us</li>
             </ul>
         </div>
@@ -28,30 +28,30 @@
                         <!-- main slider carousel items -->
                         <div class="carousel-inner">
                             <div class="active item carousel-item" data-slide-number="0">
-                                <img src={% static 'img/car/car-1.jpg' %} class="img-fluid" alt="slider-car">
+                                <img src="{% static 'img/car/car-1.jpg' %}" class="img-fluid" alt="slider-car">
                             </div>
                             <div class="item carousel-item" data-slide-number="1">
-                                <img src={% static 'img/car/car-2.jpg' %} class="img-fluid" alt="slider-car">
+                                <img src="{% static 'img/car/car-2.jpg' %}" class="img-fluid" alt="slider-car">
                             </div>
                             <div class="item carousel-item" data-slide-number="2">
-                                <img src={% static 'img/car/car-3.jpg' %} class="img-fluid" alt="slider-car">
+                                <img src="{% static 'img/car/car-3.jpg' %}" class="img-fluid" alt="slider-car">
                             </div>
                         </div>
                         <!-- main slider carousel nav controls -->
                         <ul class="carousel-indicators car-properties list-inline nav nav-justified">
                             <li class="list-inline-item active">
                                 <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#carDetailsSlider">
-                                    <img src={% static 'img/car/car-1.jpg' %} class="img-fluid" alt="small-car">
+                                    <img src="{% static 'img/car/car-1.jpg' %}" class="img-fluid" alt="small-car">
                                 </a>
                             </li>
                             <li class="list-inline-item">
                                 <a id="carousel-selector-1" data-slide-to="1" data-target="#carDetailsSlider">
-                                    <img src={% static 'img/car/car-2.jpg' %} class="img-fluid" alt="small-car">
+                                    <img src="{% static 'img/car/car-2.jpg' %}" class="img-fluid" alt="small-car">
                                 </a>
                             </li>
                             <li class="list-inline-item">
                                 <a id="carousel-selector-2" data-slide-to="2" data-target="#carDetailsSlider">
-                                    <img src={% static 'img/car/car-3.jpg' %} class="img-fluid" alt="small-car">
+                                    <img src="{% static 'img/car/car-3.jpg' %}" class="img-fluid" alt="small-car">
                                 </a>
                             </li>
                         </ul>
@@ -73,7 +73,7 @@
 
 
 <!-- Our team start -->
-<div class="our-team content-area">
+<div class="our-team content-area bg-grea-3">
     <div class="container">
         <!-- Main title -->
         <div class="main-title">
@@ -81,98 +81,26 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
         </div>
         <!-- Slick slider area start -->
-        <div class="slick-slider-area clearfix">
-            <div class="row slick-carousel" data-slick='{"slidesToShow": 4, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
-                <div class="slick-slide-item">
-                    <div class="team-1">
-                        <div class="photo">
-                            <a href="#">
-                                <img src={% static 'img/avatar/avatar-12.jpg' %} alt="team-1" class="img-fluid">
-                            </a>
-                            <div class="social-list clearfix">
-                                <a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a>
-                                <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
-                            </div>
-                        </div>
-                        <div class="details">
-                            <h4><a href="team-detail.html">Brandon Miller</a></h4>
-                            <h5>Manager</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="slick-slide-item">
-                    <div class="team-1">
-                        <div class="photo">
-                            <a href="#">
-                                <img src={% static 'img/avatar/avatar-9.jpg' %} alt="team-1" class="img-fluid">
-                            </a>
-                            <div class="social-list clearfix">
-                                <a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a>
-                                <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
-                            </div>
-                        </div>
-                        <div class="details">
-                            <h4><a href="team-detail.html">Michelle Nelson</a></h4>
-                            <h5>Support Manager</h5>
+        <div class="container">
+            <div class="row text-center">
+             {% for member in members %}
+                <!-- Team item -->
+                <div class="col-xl-3 col-sm-6 mb-5">
+                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{{ member.photo.url }}" alt="" width="150" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                        <h5 class="mb-0">
+                            {{ member.first_name}} {{ member.last_name}} 
+                        </h5>
+                        <span class="small text-uppercase text-muted">
+                            {{ member.occupation}}
+                        </span>
+                        <div class="c-leadership-list-item__hover-overlay-about">
+                            <li class="list-inline-item"><a href="{{member.facebook_link}}" target="_blank" ><i class="fa fa-facebook-f"></i></a></li>
+                            <li class="list-inline-item"><a href="{{member.twitter_link}}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="{{member.linkedin_link}}" target="_blank"><i class="fa fa-linkedin"></i></a></li>
                         </div>
                     </div>
                 </div>
-                <div class="slick-slide-item">
-                    <div class="team-1">
-                        <div class="photo">
-                            <a href="#">
-                                <img src={% static 'img/avatar/avatar-11.jpg' %} alt="team-1" class="img-fluid">
-                            </a>
-                            <div class="social-list clearfix">
-                                <a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a>
-                                <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
-                            </div>
-                        </div>
-                        <div class="details">
-                            <h4><a href="team-detail.html">Stone Carolyn</a></h4>
-                            <h5>Creative Director</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="slick-slide-item">
-                    <div class="team-1">
-                        <div class="photo">
-                            <a href="#">
-                                <img src={% static 'img/avatar/avatar-10.jpg' %} alt="team-1" class="img-fluid">
-                            </a>
-                            <div class="social-list clearfix">
-                                <a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a>
-                                <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
-                            </div>
-                        </div>
-                        <div class="details">
-                            <h4><a href="team-detail.html">Martin Smith</a></h4>
-                            <h5>Web Developer</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="slick-slide-item">
-                    <div class="team-1">
-                        <div class="photo">
-                            <a href="#">
-                                <img src={% static 'img/avatar/avatar-11.jpg' %} alt="team-1" class="img-fluid">
-                            </a>
-                            <div class="social-list clearfix">
-                                <a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a>
-                                <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
-                            </div>
-                        </div>
-                        <div class="details">
-                            <h4><a href="team-detail.html">Stone Carolyn</a></h4>
-                            <h5>Creative Director</h5>
-                        </div>
-                    </div>
-                </div>
+              {% endfor %} 
             </div>
         </div>
     </div>
