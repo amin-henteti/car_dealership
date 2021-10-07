@@ -2,6 +2,8 @@ from django.db import models
 from django.db.models.enums import Choices
 from django.utils.translation import to_locale
 from datetime import datetime
+from ckeditor.fields import RichTextField
+from multiselectfield import MultiSelectField
 from .choices import state_choices, features_choices, integer_choices, year_choices, availibility_choices
 # Create your models here.
 
@@ -20,8 +22,10 @@ class Car(models.Model):
     price = models.IntegerField()
     miles = models.IntegerField()
     condition = models.CharField(max_length=250)
-    description = models.TextField(max_length=500)
-    features = models.CharField(choices=features_choices, max_length=200)
+
+    description = RichTextField()
+    features = MultiSelectField(choices=features_choices, max_length=200)
+
     body_style = models.CharField(max_length=200)
     engine = models.CharField(max_length=200)
     transmission = models.CharField(max_length=200)
@@ -31,7 +35,11 @@ class Car(models.Model):
     fuel_type = models.CharField(('Fuel'), choices=(('Essence','Essence'), 
                                                     ('Gaz', 'gaz'),
                                                     ('Electric', 'Electric')), max_length=50)
-    available = models.CharField(('availibility'), choices=availibility_choices, max_length=100)
+    availibility = models.CharField(('availibility'), choices=availibility_choices, max_length=100)
     created_date = models.DateTimeField(default=datetime.now)
+
+
+    def __str__(self):
+        return self.title + ' ' + self.model
 
 
