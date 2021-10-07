@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from pages.models import Member
+from .models import Member
 
 from django.utils.html import format_html
 class MemberAdmin(admin.ModelAdmin):
@@ -12,7 +12,6 @@ class MemberAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'thumbnail', 'first_name',)
     search_fields = ('first_name', 'last_name', 'ocuppation',)
     list_filter = ('last_name', 'ocuppation',)
-
 
 
 admin.site.register(Member, MemberAdmin)
