@@ -5,7 +5,10 @@ from datetime import datetime
 from ckeditor.fields import RichTextField
 from multiselectfield import MultiSelectField
 from .choices import state_choices, features_choices, integer_choices, year_choices, availibility_choices
+
 # Create your models here.
+
+MAX_NUMBER_VIEWS = 4 # 4 is the total number of views images that can be associated to a car as seen below
 
 class Car(models.Model):
     title = models.CharField(max_length=200)
