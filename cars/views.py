@@ -26,7 +26,7 @@ def gat_views_images(all_cars):
 
 def cars(request):
     all_cars = Car.objects.order_by('-created_date')
-    paginator = Paginator(all_cars, 4)
+    paginator = Paginator(all_cars, 1)
     page = request.GET.get("page")
     paged_cars = paginator.get_page(page)
     views_images = gat_views_images(paged_cars)

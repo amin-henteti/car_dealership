@@ -88,28 +88,37 @@
                 <!-- Page navigation start -->
                 <div class="pagination-box p-box-2 text-center">
                     <nav aria-label="Page navigation example">
-                      {% if cars.has_other_pages %}
+                      {% if all_cars.has_other_pages %}
                         <ul class="pagination">
-                          {% if cars.has_previous %}
+                            <!-- angle left control -->
+                          {% if all_cars.has_previous %}
                             <li class="page-item">
-                                <a class="page-link" href="?page={{cars.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
+                                <a class="page-link" href="?page={{all_cars.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
                             </li>
                           {%else %} 
                             <li class="page-item disabled">
                                 <a class="page-link"><i class="fa fa-angle-left"></i></a>
                             </li>
-                          {%endif%} 
-
-                          {%for i in cars.paginator.page_range%}
-                            {% if i == cars.number%}
+                          {%endif%}  
+                          <!--pages number activer / disable -->
+                          {%for i in all_cars.paginator.page_range%}
+                            {% if i == all_cars.number%}
                             <li class="page-item"><a class="page-link active" href="#">{{i}}</a></li>
                             {%else%}
                             <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
                             {%endif%}
                           {%endfor%}
+
+                            <!--angle right control -->
+                          {% if all_cars.has_next %}
                             <li class="page-item">
-                                <a class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
+                                <a class="page-link" href="?page={{all_cars.next_page_number}}"><i class="fa fa-angle-right"></i></a>
                             </li>
+                          {%else %} 
+                            <li class="page-item disabled">
+                                <a class="page-link"><i class="fa fa-angle-right"></i></a>
+                            </li>
+                          {%endif%}
                         </ul>
                       {% endif %}
                     </nav>
