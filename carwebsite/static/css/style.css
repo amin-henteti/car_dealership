@@ -8,6 +8,7 @@ a {
     color: #4d4d4d;
 }
 
+
 a:hover {
     color: #525252;
     text-decoration: none;
@@ -9765,10 +9766,8 @@ a.nav-link.active{
 }
 
 .tabbing-box .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
-  color: #fff !important;
+  color: #1411c2 !important;
 }
-
-
 
 
 
