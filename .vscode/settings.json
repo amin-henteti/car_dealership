@@ -1,0 +1,16 @@
+{
+    "json.schemas": [
+    
+    ],
+    "[jsonc]": {
+
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace"
+    },
+    "python.formatting.provider": "black",
+    "editor.formatOnSave": true,
+    //"python.linting.flake8Enabled": true,
+    //"python.linting.pydocstyleEnabled" : false
+}
