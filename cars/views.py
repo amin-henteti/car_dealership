@@ -1,9 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models.query import QuerySet
+from django.db.models.sql.datastructures import Join
+from itertools import chain
 
 # Create your views here.
 
 from .models import Car, MAX_NUMBER_VIEWS
+
+CARS_PER_PAGE = 4
 
 data = {
     "nav_list": ("HOME", "CARS", "SERVICES", "ABOUT", "CONTACT"),
@@ -37,7 +42,7 @@ def gat_views_images(all_cars):
 def cars(request):
 
     all_cars = Car.objects.order_by("-created_date")
-    paginator = Paginator(all_cars, 1)
+    paginator = Paginator(all_cars, CARS_PER_PAGE)
     page = request.GET.get("page")
     paged_cars = paginator.get_page(page)
     views_images = gat_views_images(paged_cars)
@@ -75,3 +80,48 @@ def car_details(request, id):
         "car_views_images": car_views_images,
     }
     return render(request, "cars/car_details.html", {**data, **data2})
+
+
+def search(request):
+
+    all_cars = Car.objects.order_by("-created_date")
+
+    keyword = request.GET.get("keyword")
+
+    if not (keyword is None):
+        filter_cars = all_cars.filter(title__icontains=keyword) # initialisation, QuerySet(Car) doesnt work to make an empty query
+        cars_fields = [
+            "availibility",
+            "body_style",
+            "color",
+            "condition",
+            "description",
+            "engine",
+            "features",
+            "fuel_type",
+            "transmission",
+            "location",
+            "model",
+            "provinance",
+            "title",
+            "year",
+        ]
+
+        for field in cars_fields:
+            print(55 * "_")
+            cars_field = {field + "__icontains": keyword}
+            q = all_cars.filter(**cars_field)  # A filter from all cars query
+            filter_cars = filter_cars | q # update the search by joining the query with the previous ones
+            print("Succes ", field, q.__len__, filter_cars.__len__)
+    else:
+        filter_cars = all_cars
+    paginator = Paginator(filter_cars, CARS_PER_PAGE)
+    page = request.GET.get("page")
+    paged_cars = paginator.get_page(page)
+    views_images = gat_views_images(paged_cars)
+
+    data2 = {
+        "all_cars": paged_cars,
+        "views_images": views_images,
+    }
+    return render(request, "cars/search.html", {**data, **data2})

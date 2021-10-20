@@ -1,0 +1,214 @@
+{% extends 'base.html' %} 
+{% load static %}
+{%load humanize %}
+
+{% block content %} 
+
+<!-- Sub banner start -->
+<div class="sub-banner overview-bgi">
+    <div class="container breadcrumb-area">
+        <div class="breadcrumb-areas">
+            <h1>Search Results</h1>
+            <ul class="breadcrumbs">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li class="active">Search</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Sub Banner end -->
+
+<!-- Featured car start -->
+<div class="featured-car content-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                 {% for car in all_cars %} 
+                    <div class="col-lg-6 col-md-6">
+                        <div class="car-box-3">
+                            <div class="car-thumbnail">
+                                <a href="{% url 'car_details' car.id %}" class="car-img">
+                                    <div class="tag">{{car.availibility}}</div>
+                                    <div class="price-box">
+                                        <span>{{ car.price | intcomma}} $</span>
+                                    </div>
+                                    <img class="d-block w-100" src="{{car.main_image.url}}" alt="car" style="min-height: 262px; max-height: 262px;">
+                                </a>
+                                <div class="carbox-overlap-wrapper">
+                                    <div class="overlap-box">
+                                        <div class="overlap-btns-area">
+                                            <div class="car-magnify-gallery">
+                                                <a href={{car.main_image.url}}  class="overlap-btn" >
+                                                    <i class="fa fa-expand"></i>
+                                                    <img class="hidden" src={{car.main_image.url}} >
+                                                </a> 
+                                                {% for ind, urls in views_images.items %}
+                                                    {% if ind == car.id %}
+                                                        {% for url in urls %}
+                                                            <a href= {{url}} class="hidden">
+                                                                <img class="hidden" src= {{url}} >
+                                                            </a>
+                                                        {%endfor%} 
+                                                    {%endif%}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="detail">
+                                <h1 class="title">
+                                    <a href="{% url 'car_details' car.id %}">{{car.title}}</a>
+                                </h1>
+                                <div class="location">
+                                    <a href="{% url 'car_details' car.id %}">
+                                        <i class="flaticon-pin"></i>{{car.provinance}} {{car.location}}
+                                    </a>
+                                </div>
+                                <a href="{% url 'car_details' car.id %}">
+                                    <ul class="facilities-list clearfix">
+                                        <li>{{car.fuel_type}}</li>
+                                        <li>{{car.miles | intcomma}} miles</li>
+                                        <li>{{car.transmission}}</li>
+                                                                        
+                                        {% for f in car.features %}
+                                            <li>{{f}}</li>
+                                        {% endfor %}
+                                        
+                                        <li>{{car.color}}</li>
+                                        <li>{{car.year}}</li>
+                                    </ul>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                  {% endfor %}
+                </div>
+                <!-- Page navigation start -->
+                <div class="pagination-box p-box-2 text-center">
+                    <nav aria-label="Page navigation example">
+                      {% if all_cars.has_other_pages %}
+                        <ul class="pagination">
+                            <!-- angle left control -->
+                          {% if all_cars.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{all_cars.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
+                            </li>
+                          {%else %} 
+                            <li class="page-item disabled">
+                                <a class="page-link"><i class="fa fa-angle-left"></i></a>
+                            </li>
+                          {%endif%}  
+                          <!--pages number activer / disable -->
+                          {%for i in all_cars.paginator.page_range%}
+                            {% if i == all_cars.number%}
+                            <li class="page-item"><a class="page-link active" href="#">{{i}}</a></li>
+                            {%else%}
+                            <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                            {%endif%}
+                          {%endfor%}
+
+                            <!--angle right control -->
+                          {% if all_cars.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{all_cars.next_page_number}}"><i class="fa fa-angle-right"></i></a>
+                            </li>
+                          {%else %} 
+                            <li class="page-item disabled">
+                                <a class="page-link"><i class="fa fa-angle-right"></i></a>
+                            </li>
+                          {%endif%}
+                        </ul>
+                      {% endif %}
+                    </nav>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="sidebar-right">
+                    <!-- Advanced search start -->
+                    <div class="widget advanced-search2">
+                        <h3 class="sidebar-title">Search your desire car</h3>
+                        <form method="GET">
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="brand">
+                                    <option>Brand</option>
+                                    <option>Any</option>
+                                    <option>New</option>
+                                    <option>Semi-New</option>
+                                    <option>Damaged</option>
+                                    <option>Used</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="location">
+                                    <option>Location</option>
+                                    <option>United States</option>
+                                    <option>United Kingdom</option>
+                                    <option>American Samoa</option>
+                                    <option>Belgium</option>
+                                    <option>Cameroon</option>
+                                    <option>Canada</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="year">
+                                    <option>Year</option>
+                                    <option>2016</option>
+                                    <option>2017</option>
+                                    <option>2018</option>
+                                    <option>2019</option>
+                                    <option>2020</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="category">
+                                    <option>Category</option>
+                                    <option>Luxury Car</option>
+                                    <option>Pickup Truck</option>
+                                    <option>Minivan</option>
+                                    <option>Truck</option>
+                                    <option>Sports Car</option>
+                                    <option>Wagon</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="transmission">
+                                    <option>Transmission</option>
+                                    <option>Automatic</option>
+                                    <option>Manual</option>
+                                    <option>Tiptronic</option>
+                                </select>
+                            </div>
+                            <div class="range-slider clearfix">
+                                <label>Price</label>
+                                <div data-min="0" data-max="150000"  data-min-name="min_price" data-max-name="max_price" data-unit="USD" class="range-slider-ui ui-slider" aria-disabled="false"></div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group mb-0">
+                                <button class="search-button btn">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                   
+                    <!-- Question start -->
+                    <div class="widget question widget-3">
+                        <h5 class="sidebar-title">Follow us</h5>
+                        <div class="social-list clearfix">
+                            <ul>
+                                <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
+                                <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Featured car end -->
+
+{% endblock %}
