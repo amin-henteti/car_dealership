@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 
 LOGIN_REDIRECT_URL = "dashboard"
 
+LOGIN_URL = "login"
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,14 +43,12 @@ INSTALLED_APPS = [
     "ckeditor",
     "django.contrib.sites",
     "allauth",
-    #"allauth.account",
+    # "allauth.account",
     "allauth.socialaccount",
     # Providers
     "allauth.socialaccount.providers.facebook",
     "allauth.socialaccount.providers.google",
-    
     "contacts.apps.ContactsConfig",
-    
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

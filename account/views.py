@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from cars.views import data
 
 
@@ -79,5 +80,6 @@ def logout(request):
     return redirect("home")
 
 
+@login_required
 def dashboard(request):
     return render(request, "account/dashboard.html", data)
