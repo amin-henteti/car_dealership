@@ -29,6 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_REDIRECT_URL = "dashboard"
 
 # Application definition
 
@@ -37,13 +38,23 @@ INSTALLED_APPS = [
     "pages.apps.PagesConfig",
     "account.apps.AccountConfig",
     "django.contrib.humanize",
+    "ckeditor",
+    "django.contrib.sites",
+    "allauth",
+    #"allauth.account",
+    "allauth.socialaccount",
+    # Providers
+    "allauth.socialaccount.providers.facebook",
+    "allauth.socialaccount.providers.google",
+    
+    "contact.apps.ContactConfig",
+    
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "ckeditor",
 ]
 
 MIDDLEWARE = [
@@ -147,3 +158,4 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: "danger",
 }
+SITE_ID = 1

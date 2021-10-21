@@ -16,14 +16,17 @@ def register(request):
         Password = request.POST["password"]
         ConfirmPassword = request.POST["confirm_password"]
         if Password != ConfirmPassword:
-            messages.error(request, " Password does not match ")
+            messages.error(request, " Password does not match.\nTry again ")
             return redirect("register")
         else:
             if User.objects.filter(username=Username).exists():
-                messages.error(request, " Username already exist ")
+                messages.error(
+                    request,
+                    " Username already exist.\nPlease try another one or sign in ",
+                )
                 return redirect("register")
             elif User.objects.filter(email=EmailAddress).exists():
-                messages.error(request, " Email already exist ")
+                messages.error(request, " Email already exist.\nTry to sign in ")
                 return redirect("register")
             else:  # all tests are passed
                 user = User.objects.create(
@@ -35,24 +38,33 @@ def register(request):
                 )
                 auth.login(request, user)
                 user.save()
-                messages.success(request, "You're now logged In")
+                messages.success(request, "You're now logged in. Welcome!")
                 return redirect("dashboard")
-                messages.success(request, "Successfully registred. Thank you")
+                messages.success(
+                    request, "Successfully registred in our site.. Thank you!"
+                )
                 return redirect("login")
     return render(request, "account/register.html", data)
 
 
 def login(request):
-    if request.method == "POST€":
-        Username = request.POST["username"]
+    if request.method == "POST":
         Password = request.POST["password"]
-        user = auth.authenticate(username=Username, password=Password)
+        Username = request.POST.get("username")
+        print(f"{Password} is password, {Username} is username")
+        if Username.find("@") > -1:
+            EmailAdress = Username
+            user = auth.authenticate(email=EmailAdress, password=Password)
+        else:
+            user = auth.authenticate(username=Username, password=Password)
         if user is None:
-            messages.error(request, " Invelid login credentials ")
+            messages.error(request, " Invalid login credentials ")
+            print(" Invalid login credentials ")
             return redirect("login")
         else:
             auth.login(request, user)
-            messages.success(request, " welcome back ")
+            print("You're now logged in. Welcome!")
+            messages.success(request, "You're now logged in. Welcome!")
             return redirect("dashboard")
 
     return render(request, "account/login.html", data)
@@ -61,7 +73,8 @@ def login(request):
 def logout(request):
     if request.method == "POST":
         auth.logout(request)
-        messages.success(request, "You are successfully logged out")
+        # messages.success(request, "You are successfully logged out. See you soon")
+        print("You are successfully logged out. See you soon")
         return redirect("home")
     return redirect("home")
 

@@ -1,11 +1,8 @@
 {% extends 'base.html' %}
 {% block title %} Log-in {% endblock %}
 
-{% block content %} 
-
 {% load static %}
-{% load socialaccount %}
-{% providers_media_js %}
+{% block content %} 
 <div class="sub-banner overview-bgi">
     <div class="container breadcrumb-area">
         <div class="breadcrumb-areas">
@@ -35,34 +32,31 @@
                     <form action={% url 'login' %} method="POST">
                         {% csrf_token %}
                         <div class="form-group form-box">
-                            <input type="text" name="username" class="input-text" placeholder="Username" required>
-                            <i class="flaticon-text"></i>
+                            <input type="username" name="username" class="input-text" placeholder="Username" required>
+                            <i class="flaticon-mail"></i>
                         </div>
                         <div class="form-group form-box">
                             <input type="password" name="password" class="input-text" placeholder="Password" required>
                             <i class="flaticon-lock"></i>
                         </div>
-                        
-                            
-                        <div class="logincontainer">
-                            <div class="form-group mb-0 clearfix">
-                                <button type="submit" class="btn-md btn-theme float-middle">Login</button>
-                            </div>
+                        <div class="form-group mb-0 clearfix">
+                            <button type="submit" class="btn-md btn-theme float-left">Login</button>
                         </div>
                         <div class="extra-login clearfix">
                             <span>Or Sign in With</span>
                         </div>
                         <div class="clearfix"></div>
                         <!-- Social Login -->
-                        <ul class="social-list-3">
-                            <li><a href="{% provider_login_url 'google' %}" class="google-bg">
-                                <i class="fa fa-google google-i"></i> Sign in with Google
-                            </a></li>
-                            <br>
-                            <li><a href="{% provider_login_url 'facebook' method='oauth2' %}" class="linkedin-bg">
-                                <i class="fa fa-facebook facebook-i"></i> Sign in with Facebook
-                            </a></li>
-                        </ul>
+                        <div class="d-grid mb-2">
+                          <button class="btn btn-google btn-login text-uppercase fw-bold" type="submit">
+                            <i class="fa fa-google me-2"></i> Sign in with Google
+                          </button>
+                        </div>
+                        <div class="d-grid">
+                          <button class="btn btn-facebook btn-login text-uppercase fw-bold" type="submit">
+                            <i class="fa fa-facebook-f me-2"></i> Sign in with Facebook
+                          </button>
+                        </div>
                     </form>
                     <p>Don't have an account? <a href={% url 'register' %} class="thembo"> Register here</a></p>
                 </div>
@@ -71,17 +65,3 @@
     </div>
 </div>
 {% endblock %}
-
-<!-- Social Login -->
-<div class="d-grid mb-2">
-    <button class="btn btn-google btn-login text-uppercase fw-bold" type="submit">
-      <i class="fa fa-google me-2"></i> Sign in with Google
-    </button>
-  </div>
-  <div class="d-grid">
-      <a href="{% provider_login_url 'facebook' method = 'oauth2' %}">
-          <button class="btn btn-facebook btn-login text-uppercase fw-bold" type="submit">
-              <i class="fa fa-facebook-f me-2"></i> Sign in with Facebook
-          </button>
-      </a>
-  </div>

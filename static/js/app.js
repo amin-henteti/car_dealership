@@ -483,4 +483,4 @@ $(function () {
 
 SetTimeOut(function() {
     $('message') = fadeOut('slow') ;
-}, 4000)
+}, 500)
