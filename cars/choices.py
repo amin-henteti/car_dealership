@@ -4,6 +4,25 @@ availibility_choices = (
     ("Not available", "Not available"),
 )
 
+
+details_choices={
+    "Body Style": "body_style",  # exemple: Convertible,
+    "Engine": "engine",  # exemple: 3.4L Mid-Engine V6,
+    "Transmission": "transmission",  # exemple: 6-speed Manual,
+    "Miles": "miles",  # exemple: 12,
+    "Doors": "doors",  # exemple: 2,
+    "Passengers": "passengers",  # exemple: 2,
+    "Fuel Type": "fuel_type",  # exemple: Gasoline,
+    "Condition": "condition",  # exemple: Brand New,
+    "Color": "color",  # exemple: Black,
+    
+    "Fuel Mileage": None,  # exemple: 20 City / 28 Hwy,
+    "Owners": None,  # exemple: N/A,
+    "Waeeanty": None,  # exemple: 3 Years Limited    
+    "Drivetrain": None,  # exemple: Rear Wheel Drive,
+    "Exaterion": None,  # exemple: Lime Gold Metallic,
+    "Interior": None,  # exemple: Agate Grey,
+}
 state_choices = (
     ("AL", "Alabama"),
     ("AK", "Alaska"),

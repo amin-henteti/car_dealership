@@ -13,9 +13,9 @@
             <div class="carousel-item banner-max-height active item-bg">
                 <img class="d-block w-100 h-100" src="{% static 'img/car-1.jpg' %}" alt="banner">
                 <div class="carousel-content container banner-info-2 bi-2 text-left">
-                    <h3>Wow Factor Standard</h3>
-                    <h5>Allow us to guide you through the innovative stress<br>
-                        free approach in finding your dream car.</h5>
+                    <h3>Car-dealership website</h3>
+                    <h5>Allow us to guide you through your search for the dream car.<br>
+                        We offer you the best cars for rent or buy at the best prices.</h5>
                     <a href="{% url 'services' %}" class="btn btn-lg btn-theme">Read more</a>
                 </div>
             </div>
@@ -72,7 +72,7 @@
         <!-- Main title -->
         <div class="main-title">
             <h1>Featured <span>Cars</span></h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p>List of Featured Cars</p>
         </div>
         <!-- Slick slider area start -->
         <div class="slick-slider-area clearfix">
@@ -124,7 +124,7 @@
                             <a href="{% url 'car_details' car.id %}">
                                 <ul class="facilities-list clearfix">
                                     <li>{{car.fuel_type}}</li>
-                                    <li>{{car.miles | intcomma}} miles</li>
+                                    <li>{{car.miles | intcomma}} mi.</li>
                                     <li>{{car.transmission}}</li>
                                                                     
                                     {% for f in car.features %}
@@ -172,7 +172,7 @@
                             <div class="facilities-list clearfix">
                                 <ul>
                                     <li>
-                                        <span><i class="flaticon-way"></i></span>{{car.miles | intcomma}} miles
+                                        <span><i class="flaticon-way"></i></span>{{car.miles | intcomma}} mi.
                                     </li>
                                     <li>
                                         <span><i class="flaticon-calendar-1"></i></span>{{car.year}}
@@ -250,7 +250,7 @@
              {% for member in members %}
                 <!-- Team item -->
                 <div class="col-xl-3 col-sm-6 mb-5">
-                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{{ member.photo.url }}" alt="" width="150" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{{ member.photo.url }}" alt="" style="min-height: 120px; max-height: 120px; min-width: 120px; max-width: 120px;"class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                         <h5 class="mb-0">
                             {{ member.first_name}} {{ member.last_name}} 
                         </h5>

@@ -9,7 +9,7 @@
         <div class="breadcrumb-areas">
             <h1>Contact Us</h1>
             <ul class="breadcrumbs">
-                <li><a href= {% url 'home' %}Home</a></li>
+                <li><a href= "{% url 'home' %}"> Home </a></li>
                 <li class="active">Contact Us</li>
             </ul>
         </div>
@@ -23,7 +23,7 @@
         <!-- Main title -->
         <div class="main-title text-center">
             <h1>Contact <span>Us</span></h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+            <p>Send us a message if you need more information and we will back to you soon</p>
         </div>
         <form action="#" method="POST" enctype="multipart/form-data">
             <div class="row">
@@ -61,42 +61,36 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5">
-                    <div class="contact-info-2">
-                        <div class="ci-box">
-                            <div class="icon">
-                                <i class="flaticon-phone"></i>
+                <br>
+                <div class="col-lg-5 col-md-7">
+                    <div class="sidebar-moddle">
+                        <div class="contact-info-2">
+                            <div class="ci-box">
+                                <div class="icon">
+                                    <i class="flaticon-phone"></i>
+                                </div>
+                                <div class="detail">
+                                    <h5>Phone:</h5>
+                                    <a href="tel:+33-06-59-94-36-32">(+33) 06 59 94 36 32</a>
+                                </div>
                             </div>
-                            <div class="detail">
-                                <h5>Phone:</h5>
-                                <p><a href="#">0477 8556 552</a></p>
+                            <div class="ci-box">
+                                <div class="icon">
+                                    <i class="flaticon-mail"></i>
+                                </div>
+                                <div class="detail">
+                                    <h5>Email:</h5>
+                                    <a href="mailto:amin.henteti@ensta-paris.fr">amin.henteti@ensta-paris.fr</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="ci-box">
-                            <div class="icon">
-                                <i class="flaticon-mail"></i>
-                            </div>
-                            <div class="detail">
-                                <h5>Email:</h5>
-                                <p><a href="#">info@themevessel.com</a></p>
-                            </div>
-                        </div>
-                        <div class="ci-box">
-                            <div class="icon">
-                                <i class="flaticon-earth"></i>
-                            </div>
-                            <div class="detail">
-                                <h5>Web:</h5>
-                                <p><a href="#">info@themevessel.com</a></p>
-                            </div>
-                        </div>
-                        <div class="ci-box mb-0">
-                            <div class="icon">
-                                <i class="flaticon-fax"></i>
-                            </div>
-                            <div class="detail">
-                                <h5>Fax:</h5>
-                                <p><a href="#">+0477 85X6 552</a></p>
+                            <div class="ci-box">
+                                <div class="icon">
+                                    <i class="flaticon-earth"></i>
+                                </div>
+                                <div class="detail">
+                                    <h5>Web:</h5>
+                                    <a href="{% url 'home' %}">Car-dealership</a>
+                                </div>
                             </div>
                         </div>
                     </div>

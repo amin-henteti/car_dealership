@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models.query import QuerySet
 from django.db.models.sql.datastructures import Join
-from itertools import chain
+from .choices import details_choices
 
 # Create your views here.
 
@@ -15,10 +15,18 @@ data = {
     "nav_list": ("HOME", "CARS", "SERVICES", "ABOUT", "CONTACT"),
 }
 
-home_search_fields = ("title", "model", "location", "year")
+home_search_fields = (
+    "keyword",
+    "title",
+    "model",
+    "location",
+    "year",
+    "min_price",
+    "max_price",
+)
 fields_values = {
     field: Car.objects.values_list(field, flat=True).distinct()
-    for field in home_search_fields
+    for field in home_search_fields[1:-2]
 }
 
 
@@ -77,10 +85,11 @@ def car_details(request, id):
             print(e)
         except ValueError as ee:
             print(ee)
-
-    data2 = {
+    details_dict = {detail_name: car.__getattribute__(attr) for detail_name, attr in details_choices.items() if attr is not None}
+    data2 = { 
         "car": car,
         "car_views_images": car_views_images,
+        "details_dict" : details_dict,
     }
     return render(request, "cars/car_details.html", {**data, **data2})
 
@@ -112,25 +121,27 @@ def search(request):
                     "year",
                 ]
             )
-            if filter_cars is None:
-                cond = {cars_fields[0] + "__icontains": field_value}
-                # initialisation, QuerySet(Car) doesnt work to make an empty query
-                filter_cars = all_cars.filter(**cond)
             print(55 * "-", cars_fields)
             # in the keyword case we make search in multiple fields with union condition (OR)
-            if field_name == "keyword":
+            if field_name == "keyword": 
                 for field in cars_fields:
                     cond = {field + "__icontains": field_value}
-                    if filter_cars is None:
-                        q = all_cars.filter(**cond)  # A filter from all cars query
-                    # update the search by joining the query with the previous ones
-                    filter_cars = filter_cars | q
+                    # A filter from all cars query
+                    q = all_cars.filter(**cond)
+                    # initialise or update the search by joining the query with the previous ones
+                    filter_cars = q if filter_cars is None else filter_cars | q
+                continue  # skip following cases and instruction
+            elif field_name == "min_price":
+                q = all_cars.filter(**{"price__gte": field_value})
+            elif field_name == "max_price":
+                q = filter_cars.filter(**{"price__lte": field_value})
             else:
-                filter_cars = filter_cars.filter(
-                    **{cars_fields[0] + "__icontains": field_value}
-                )
+                q = filter_cars.filter(**{cars_fields[0] + "__icontains": field_value})
+            filter_cars = q if filter_cars is None else filter_cars & q
+
     if filter_cars is None:  # No applied filters
         filter_cars = all_cars
+
     paginator = Paginator(filter_cars, CARS_PER_PAGE)
     page = request.GET.get("page")
     paged_cars = paginator.get_page(page)

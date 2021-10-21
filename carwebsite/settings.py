@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.facebook",
     "allauth.socialaccount.providers.google",
     
-    "contact.apps.ContactConfig",
+    "contacts.apps.ContactsConfig",
     
     "django.contrib.admin",
     "django.contrib.auth",
