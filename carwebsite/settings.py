@@ -32,6 +32,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "https://agile-hollows-64892.herokuapp.com",
     "https://tranquil-oasis-46324.herokuapp.com",
+    "tranquil-oasis-46324.herokuapp.com",
     "car-dealership.com",
     "www.car-dealership.com",
 ]
@@ -55,8 +56,7 @@ INSTALLED_APPS = [
     # Providers
     "allauth.socialaccount.providers.facebook",
     "allauth.socialaccount.providers.google",
-    'whitenoise.runserver_nostatic',
-
+    "whitenoise.runserver_nostatic",
     "contacts.apps.ContactsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -74,7 +74,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'django.middleware.security.SecurityMiddleware',
+    "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
