@@ -27,9 +27,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "https://agile-hollows-64892.herokuapp.com",
+    "car-dealership.com",
+    "www.car-dealership.com",
+]
 
 LOGIN_REDIRECT_URL = "dashboard"
 
@@ -67,8 +71,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    
-    "whitenoise.middleware.WhiteNoiseMiddleware"
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "carwebsite.urls"
@@ -186,4 +189,4 @@ EMAIL_USE_TLS = True
 # export EMAIL_PASSWORD="xxxx xxxx xxxx xxxx"
 
 # WHITE_NOISE_SETTING
-STATICFILES_STORAGE   = "whitenoise.storage.CompressManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressManifestStaticFilesStorage"
