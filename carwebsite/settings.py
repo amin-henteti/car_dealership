@@ -35,6 +35,8 @@ ALLOWED_HOSTS = [
     "tranquil-oasis-46324.herokuapp.com",
     "car-dealership.com",
     "www.car-dealership.com",
+    "127.0.0.1",
+    "localhost"
 ]
 
 LOGIN_REDIRECT_URL = "dashboard"
