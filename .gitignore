@@ -258,7 +258,7 @@ fabric.properties
 .idea/codestream.xml
 
 # Secret keys
-secret_keys.py
+# secret_keys.py
 
 ### PyCharm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
