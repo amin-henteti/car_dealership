@@ -72,7 +72,7 @@ ROOT_URLCONF = "carwebsite.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ["templates"],
+        "DIRS": [str(BASE_DIR.joinpath("templates"))],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -158,4 +158,18 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: "danger",
 }
+AUTHENTICATION_BACKENDS = (
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
 SITE_ID = 1
+ACCOUNT_EMAIL_VERIFICATION = "none"
+
+# SENDING_EMAIL
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'anonyme0000xx@gmail.com'
+EMAIL_HOST_PASSWORD = 'anonyme0000@xx2'
+EMAIL_USE_TLS = True
+

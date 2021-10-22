@@ -3,9 +3,20 @@ availibility_choices = (
     ("Sale", "For Sale"),
     ("Not available", "Not available"),
 )
+customer_need_choices = (
+    ("interested", "I'm interested in this"),
+    ("test drive", "I'd like to test drive this"),
+    (
+        "best price",
+        "I'd like to know your best price for this",
+    ),
+    (
+        "history report",
+        "I'd like a history report for this",
+    ),
+)
 
-
-details_choices={
+details_choices = {
     "Body Style": "body_style",  # exemple: Convertible,
     "Engine": "engine",  # exemple: 3.4L Mid-Engine V6,
     "Transmission": "transmission",  # exemple: 6-speed Manual,
@@ -15,10 +26,9 @@ details_choices={
     "Fuel Type": "fuel_type",  # exemple: Gasoline,
     "Condition": "condition",  # exemple: Brand New,
     "Color": "color",  # exemple: Black,
-    
     "Fuel Mileage": None,  # exemple: 20 City / 28 Hwy,
     "Owners": None,  # exemple: N/A,
-    "Waeeanty": None,  # exemple: 3 Years Limited    
+    "Waeeanty": None,  # exemple: 3 Years Limited
     "Drivetrain": None,  # exemple: Rear Wheel Drive,
     "Exaterion": None,  # exemple: Lime Gold Metallic,
     "Interior": None,  # exemple: Agate Grey,

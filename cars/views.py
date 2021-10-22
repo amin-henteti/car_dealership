@@ -3,7 +3,8 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models.query import QuerySet
 from django.db.models.sql.datastructures import Join
-from .choices import details_choices
+from .choices import details_choices, customer_need_choices
+from contacts.models import Contact
 
 # Create your views here.
 
@@ -85,11 +86,16 @@ def car_details(request, id):
             print(e)
         except ValueError as ee:
             print(ee)
-    details_dict = {detail_name: car.__getattribute__(attr) for detail_name, attr in details_choices.items() if attr is not None}
-    data2 = { 
+    details_dict = {
+        detail_name: car.__getattribute__(attr)
+        for detail_name, attr in details_choices.items()
+        if attr is not None
+    }
+    data2 = {
         "car": car,
         "car_views_images": car_views_images,
-        "details_dict" : details_dict,
+        "details_dict": details_dict,
+        "customer_need_choices": customer_need_choices,
     }
     return render(request, "cars/car_details.html", {**data, **data2})
 
@@ -123,7 +129,7 @@ def search(request):
             )
             print(55 * "-", cars_fields)
             # in the keyword case we make search in multiple fields with union condition (OR)
-            if field_name == "keyword": 
+            if field_name == "keyword":
                 for field in cars_fields:
                     cond = {field + "__icontains": field_value}
                     # A filter from all cars query

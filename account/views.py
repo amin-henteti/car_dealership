@@ -3,6 +3,7 @@ from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from cars.views import data
+from contacts.models import Contact
 
 
 def register(request):
@@ -80,6 +81,11 @@ def logout(request):
     return redirect("home")
 
 
+# if not registred/logged in then redirect to log in page
 @login_required
 def dashboard(request):
-    return render(request, "account/dashboard.html", data)
+    inquiries = Contact.objects.order_by("-created_date").filter(
+        user_id=request.user.id
+    )
+    data2 = {"inquiries": inquiries}
+    return render(request, "account/dashboard.html", {**data, **data2})

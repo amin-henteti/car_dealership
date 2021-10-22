@@ -1,5 +1,9 @@
+from django.contrib import messages
 from django.shortcuts import render
+from django.core.mail import send_mail
+from django.contrib.auth.models import User
 
+from carwebsite.settings import EMAIL_HOST_USER
 from .models import Member
 from cars.models import Car, MAX_NUMBER_VIEWS
 from cars.views import gat_views_images, data, fields_values
@@ -33,4 +37,22 @@ def about(request):
 
 
 def contact(request):
+    if request.method == "POST":
+        FullName = request.POST["name"]
+        EmailAddress = request.POST["email"]
+        Subject = request.POST["subject"]
+        Phone = request.POST["phone"]
+        Message = request.POST["message"]
+        admin_info = User.objects.get(is_superuser=True)
+        admin_email = admin_info.email
+        send_mail(
+            Subject,
+            f"You have a message from {FullName} (contacts : {EmailAddress} | {Phone})\n\n {Message}",
+            EMAIL_HOST_USER,
+            [admin_email],
+            fail_silently=False,
+        )
+        messages.success(
+            request, "Your message has been sent. Thank you for you intrest!"
+        )
     return render(request, "pages/contact.html", data)

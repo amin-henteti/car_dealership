@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block title %} {{car.title}} car {% endblock %}
 {% block content%}
 
@@ -25,6 +25,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-12 col-xs-12">
                 <div class="car-details-section">
+                    {% include 'includes/messages.html' %}
                     <!-- Heading start -->
                     <div class="heading-car clearfix">
                         <div class="pull-left">
@@ -42,49 +43,53 @@
                         <div class="carousel-inner">
 
                             {% for ind, url in car_views_images.items %}
-                                {% if ind|last == '0' %}
-                                    <div class="active item carousel-item" data-slide-number="{ind}">
-                                        <img src="{{url}}" class="img-fluid" alt="slider-car" style="min-height: 400px; max-height: 400px;">
-                                    </div>
-                                {%else %} 
-                                    <div class="item carousel-item" data-slide-number="{{ind}}">
-                                        <img src= {{url}} class="img-fluid" alt="slider-car" style="min-height: 400px; max-height: 400px;">
-                                    </div>
-                                {%endif%}                                 
-                            {% endfor %} 
-                           
+                            {% if ind|last == '0' %}
+                            <div class="active item carousel-item" data-slide-number="{ind}">
+                                <img src="{{url}}" class="img-fluid" alt="slider-car"
+                                    style="min-height: 400px; max-height: 400px;">
+                            </div>
+                            {%else %}
+                            <div class="item carousel-item" data-slide-number="{{ind}}">
+                                <img src={{url}} class="img-fluid" alt="slider-car"
+                                    style="min-height: 400px; max-height: 400px;">
+                            </div>
+                            {%endif%}
+                            {% endfor %}
+
                         </div>
                         <!-- main slider carousel nav controls -->
                         <div class="carousel-indicators-section clearfix">
                             <ul class="carousel-indicators car-properties list-inline nav nav-justified">
-                              {% for ind, url in car_views_images.items %}
+                                {% for ind, url in car_views_images.items %}
                                 {% if ind|last == 0 %}
-                                    <li class="list-inline-item active">
-                                        <a id="{{ind}}" class="selected" data-slide-to="0" data-target="#carDetailsSlider">
-                                            <img src="{{url}}" class="img-fluid" alt="small-car">
-                                        </a>
-                                    </li>
-                                {%else %} 
-                                    <li class="list-inline-item">
-                                        <a id="{{ind}}" data-slide-to="{{ind|last}}" data-target="#carDetailsSlider">
-                                            <img src="{{url}}" class="img-fluid" alt="small-car">
-                                        </a>
-                                    </li>
-                                {%endif%}                                 
-                              {% endfor %} 
-                                
+                                <li class="list-inline-item active">
+                                    <a id="{{ind}}" class="selected" data-slide-to="0" data-target="#carDetailsSlider">
+                                        <img src="{{url}}" class="img-fluid" alt="small-car">
+                                    </a>
+                                </li>
+                                {%else %}
+                                <li class="list-inline-item">
+                                    <a id="{{ind}}" data-slide-to="{{ind|last}}" data-target="#carDetailsSlider">
+                                        <img src="{{url}}" class="img-fluid" alt="small-car">
+                                    </a>
+                                </li>
+                                {%endif%}
+                                {% endfor %}
+
                             </ul>
                         </div>
                     </div>
-                    
+
                     <!-- Tabbing box start -->
                     <div class="tabbing tabbing-box mb-40">
                         <ul class="nav nav-tabs" id="carTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active show" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="one" aria-selected="false">Vehicle overview</a>
+                                <a class="nav-link active show" id="one-tab" data-toggle="tab" href="#one" role="tab"
+                                    aria-controls="one" aria-selected="false">Vehicle overview</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="two" aria-selected="false">Features</a>
+                                <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab"
+                                    aria-controls="two" aria-selected="false">Features</a>
                             </li>
                         </ul>
                         <div class="tab-content" id="carTabContent">
@@ -113,103 +118,124 @@
                                     </div>
                                 </div>
                             </div>
-                           
+
                         </div>
                     </div>
-                        
-                    
+
+
                 </div>
             </div>
             <div class="col-lg-4 col-md-12">
                 <div class="sidebar-right">
                     <!-- Advanced search start -->
                     <div class="widget advanced-search d-none-992">
-                        <button class="btn btn-outline-danger bomd btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Send message</button>
+                        <button class="btn btn-outline-danger bomd btn-block btn-lg" data-toggle="modal"
+                            data-target="#inquiryModal">Send message</button>
 
 
                         <br>
                         <h3 class="sidebar-title">Car informations</h3>
                         <ul>
-                          {% for detail_name, detail in details_dict.items %}
+                            {% for detail_name, detail in details_dict.items %}
                             <li>
                                 <span> {{detail_name}} </span> {{ detail }}
                             </li>
-                          {%endfor%}
+                            {%endfor%}
                         </ul>
                     </div>
 
                     <!-- Inquiry Modal -->
                     <div class="modal fade" id="inquiryModal" role="dialog">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="contact-dealer modal-header">
-                            <!-- <h5 class="modal-title" id="inquiryModalLabel">Contact Dealer</h5> -->
-                            <img src="{% static 'img/logos/logo-black-white.png'%}">
-                            <button type="button" class="close" data-dismiss="modal">
-                              <span>&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <form action="#">
-                                <div class="form-group">
-                                  <label for="name" class="col-form-label">Hello, My Name is</label>
-                                  <div class="row">
-                                    <div class="col">
-                                      <input type="text" name="first_name" class="form-control" placeholder="First Name" required>
-                                    </div>
-                                    <div class="col">
-                                      <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
-                                    </div>
-                                  </div>
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="contact-dealer modal-header">
+                                    <!-- <h5 class="modal-title" id="inquiryModalLabel">Contact Dealer</h5> -->
+                                    <img src="{% static 'img/logos/newlogo.png'%}"
+                                        style="background-color: transparent;">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span>&times;</span>
+                                    </button>
                                 </div>
-                                  <div class="form-group">
-                                      <select class="form-control" id="sel1" name="customer_need">
-                                        <option value="I'm interested in this">I'm interested in this</option>
-                                        <option value="I'd like to know your best price for this">I'd like to know your best price for this</option>
-                                        <option value="I'd like to test drive this">I'd like to test drive this</option>
-                                        <option value="I'd like a history report for this">I'd like a history report for this</option>
-                                      </select>
-                                    </div>
-                                
-                                <div class="form-group">
-                                  <input type="text" name="car_title" class="form-control" value="LAMBORGHINI HURACÁN." readonly>
-                                </div>
-                               
-                                <div class="form-group">
-                                  <label for="name" class="col-form-label">I live in</label>
-                                  <div class="row">
-                                    <div class="col">
-                                      <input type="text" name="city" class="form-control" placeholder="City" required>
-                                    </div>
-                                    <div class="col">
-                                      <input type="text" name="state" class="form-control" placeholder="State">
-                                    </div>
-                                  </div>
-                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'inquiry' %}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="name" class="col-form-label">Hello, My Name is</label>
+                                            <div class="row">
+                                                <div class="col">
+                                                    
+                                                    <input type="text" name="firstname" class="form-control"
+                                                        placeholder="First Name" 
+                                                        {% if user.is_authenticated %} value="{{user.first_name}}" {%endif%} 
+                                                        required>
+                                                    <input type="integer" name="user_id" class="form-control" 
+                                                    {% if user.is_authenticated %} value="{{user.id}}" {%else%} value="0" {%endif%}
+                                                        hidden>
+                                                </div>
+                                                <div class="col">
+                                                    
+                                                    <input type="text" name="lastname" class="form-control" placeholder="Last Name" 
+                                                    {% if user.is_authenticated %} value="{{user.last_name}}" {%endif%} required>                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control" id="sel1" name="customer_need">
+                                                {% for topic, value in customer_need_choices %}
+                                                <option value="{{topic}}">{{value}}</option>
+                                                {%endfor%}
+                                            </select>
+                                        </div>
 
-                                <div class="form-group">
-                                  <div class="row">
-                                    <div class="col">
-                                        <label for="name" class="col-form-label">You can reach me by email at</label>
-                                      <input type="email" name="email" class="form-control" placeholder="Email Address" required>
-                                    </div>
-                                    <div class="col">
-                                        <label for="phone" class="col-form-label">or by phone at</label>
-                                      <input type="text" name="phone" placeholder="Phone Number (optional)" class="form-control">
-                                    </div>
-                                  </div>
-                                </div>
+                                        <div class="form-group">
+                                            <input type="text" name="car_title" class="form-control"
+                                                value="{{car.title}}" readonly>
+                                            <input type="integer" name="car_id" class="form-control" value="{{car.id}}"
+                                                hidden>
+                                            <input type="integer" name="car_price" class="form-control"
+                                                value="{{car.price}}" hidden>
+                                        </div>
 
-                                <div class="form-group">
-                                  <label for="message" class="col-form-label">Add comments</label>
-                                  <textarea name="message" class="form-control" placeholder="Enter your message here (optional)"></textarea>
+                                        <div class="form-group">
+                                            <label for="name" class="col-form-label">I live in</label>
+                                            <div class="row">
+                                                <div class="col">
+                                                    
+                                                    <input type="text" name="address" class="form-control" placeholder="Address" 
+                                                    {% if user.is_authenticated %} value="{{user.address}}" {%endif%}>                                                
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="name" class="col-form-label">You can reach me by email
+                                                        at</label>
+                                                    <input type="email" name="email" class="form-control"
+                                                        placeholder="Email Address" 
+                                                        {% if user.is_authenticated %} value="{{user.email}}" {%endif%} required>
+                                                </div>
+                                                <div class="col">
+                                                    <label for="phone" class="col-form-label">or by phone at</label>
+                                                    <input type="text" name="phone"
+                                                        placeholder="Phone Number (optional)" class="form-control"
+                                                        {% if user.is_authenticated %} value="{{user.phone}}" {%endif%}>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="message" class="col-form-label">Add comments</label>
+                                            <textarea name="message" class="form-control"
+                                                placeholder="Enter your message here (optional)">Hello, I'm interested in this car and I want to ask you some questions</textarea>
+                                        </div>
+                                        <hr>
+                                        <input type="submit" value="Send" class="btn btn-block btn-danger">
+                                    </form>
                                 </div>
-                                <hr>
-                                <input type="submit" value="Send" class="btn btn-block btn-danger">
-                            </form>
-                          </div>
+                            </div>
                         </div>
-                      </div>
                     </div>
                     <!-- Question start -->
                     <div class="widget question">
@@ -219,7 +245,8 @@
                                 <i class="flaticon-pin"></i>Paris, France
                             </li>
                             <li>
-                                <i class="flaticon-mail"></i><a href="mailto:amin.henteti@ensta-paris.fr">amin.henteti@ensta-paris.fr</a>
+                                <i class="flaticon-mail"></i><a
+                                    href="mailto:amin.henteti@ensta-paris.fr">amin.henteti@ensta-paris.fr</a>
                             </li>
                             <li>
                                 <i class="flaticon-phone"></i><a href="tel:+330659943632">(+33) 06 59 94 36 322</a>
@@ -235,7 +262,7 @@
                             </ul>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -244,11 +271,11 @@
 <!-- Properties details page end -->
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script  src="js/ie10-viewport-bug-workaround.js"></script>
+<script src="js/ie10-viewport-bug-workaround.js"></script>
 <!-- Custom javascript -->
-<script  src="js/ie10-viewport-bug-workaround.js"></script>
+<script src="js/ie10-viewport-bug-workaround.js"></script>
 
-<script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0N5pbJN10Y1oYFRd0MJ_v2g8W2QT74JE"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0N5pbJN10Y1oYFRd0MJ_v2g8W2QT74JE"></script>
 <script>
     function LoadMap(propertes) {
         var defaultLat = 40.7110411;
@@ -262,24 +289,24 @@
                     featureType: "administrative",
                     elementType: "labels",
                     stylers: [
-                        {visibility: "off"}
+                        { visibility: "off" }
                     ]
                 },
                 {
                     featureType: "water",
                     elementType: "labels",
                     stylers: [
-                        {visibility: "off"}
+                        { visibility: "off" }
                     ]
                 },
                 {
                     featureType: 'poi.business',
-                    stylers: [{visibility: 'off'}]
+                    stylers: [{ visibility: 'off' }]
                 },
                 {
                     featureType: 'transit',
                     elementType: 'labels.icon',
-                    stylers: [{visibility: 'off'}]
+                    stylers: [{ visibility: 'off' }]
                 },
             ]
         };
