@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     # Providers
     "allauth.socialaccount.providers.facebook",
     "allauth.socialaccount.providers.google",
+    'whitenoise.runserver_nostatic',
+    'django.contrib.staticfiles',
     "contacts.apps.ContactsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -72,6 +74,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
@@ -190,4 +193,4 @@ EMAIL_USE_TLS = True
 # export EMAIL_PASSWORD="xxxx xxxx xxxx xxxx"
 
 # WHITE_NOISE_SETTING
-STATICFILES_STORAGE = "whitenoise.storage.CompressManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
