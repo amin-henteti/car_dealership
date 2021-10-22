@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorne carwebsite.wsgi
+web: gunicorn carwebsite.wsgi
