@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 from secret_keys import *
 from django.contrib import messages
 
@@ -26,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -66,6 +67,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    
+    "whitenoise.middleware.WhiteNoiseMiddleware"
 ]
 
 ROOT_URLCONF = "carwebsite.urls"
@@ -92,17 +95,25 @@ WSGI_APPLICATION = "carwebsite.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "django_Car_website",
+#         "USER": "postgres",
+#         "PASSWORD": os.environ["POSTGRES_PASSWORD"],
+#         "HOST": "localhost",
+#     }
+# }
+POSTGRES_PASSWORD = os.environ["POSTGRES_PASSWORD"]
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "django_Car_website",
-        "USER": "postgres",
-        "PASSWORD": os.environ["POSTGRES_PASSWORD"],
-        "HOST": "localhost",
+        dj_database_url.config(
+            default="postgres://postgres:{}@localhost/{}".format(
+                POSTGRES_PASSWORD, "django_Car_website"
+            )
+        )
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -173,3 +184,6 @@ EMAIL_USE_TLS = True
 
 # EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 # export EMAIL_PASSWORD="xxxx xxxx xxxx xxxx"
+
+# WHITE_NOISE_SETTING
+STATICFILES_STORAGE   = "whitenoise.storage.CompressManifestStaticFilesStorage"
