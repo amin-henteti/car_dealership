@@ -31,6 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "https://agile-hollows-64892.herokuapp.com",
+    "https://tranquil-oasis-46324.herokuapp.com",
     "car-dealership.com",
     "www.car-dealership.com",
 ]
