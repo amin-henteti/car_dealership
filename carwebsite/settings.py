@@ -109,15 +109,18 @@ WSGI_APPLICATION = "carwebsite.wsgi.application"
 #     }
 # }
 POSTGRES_PASSWORD = os.environ["POSTGRES_PASSWORD"]
-DATABASES = {
-    "default": {
-        dj_database_url.config(
-            default="postgres://postgres:{}@localhost/{}".format(
-                POSTGRES_PASSWORD, "django_Car_website"
+
+DATABASES = [
+    {
+        "default": {
+            dj_database_url.config(
+                default="postgres://postgres:{}@localhost/{}".format(
+                    POSTGRES_PASSWORD, "django_Car_website"
+                )
             )
-        )
+        }
     }
-}
+]
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
