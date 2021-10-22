@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.facebook",
     "allauth.socialaccount.providers.google",
     'whitenoise.runserver_nostatic',
-    'django.contrib.staticfiles',
+
     "contacts.apps.ContactsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
