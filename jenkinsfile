@@ -1,0 +1,57 @@
+def max_try_nb = 6
+def sleep_time = 2
+def api_url = "http://localhost:80/"
+pipeline{
+    agent any
+    stages{
+        stage("request api"){
+            steps{
+                echo "Hi everyone, this is the init stage"
+                echo "we will try to request from an api"
+                script{
+                    httpRequest(acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON',
+                                httpMode: 'POST', quiet: true,
+                                requestBody: '''{
+                                "display-name" : "my_Username",
+                                "email" : "user@example.test",
+                                "password" : {
+                                    "value" : "my_password"
+                                },
+                                }''',
+                                url: 'https://api.github.com/orgs/')
+
+                    // JsonSlurper jsonSlurper = new JsonSlurper()
+                    // assert jsonSlurper.parseText(text)?.json.param1 == "This is request parameter."
+                    // response = httpRequest(url: "${api_url}")
+                    // println("Status: " + response.status)
+                    // println("Content: " + response.content)
+                    // assert response.json?.headers?.host == "postman-echo.com"
+                }
+            }
+        }
+        stage("Build"){
+            steps{
+                echo "This is the build stage"
+                retry(count: "${max_try_nb}"){
+                    script{
+                        sh "sleep ${sleep_time}"
+                        def response = httpRequest(url: "${api_url}")
+                        println("Content: " + response.content)
+                        if ( response.content.contains("nginx") ){
+                            echo "build successful"
+                        }else{
+                            error(message: "still")
+                        }
+                    }
+                }
+            }
+        }
+
+        stage("Deploy"){
+            steps{
+                echo "test and QA has been successfull, so we can deploy our artifacts"
+                echo "This is the Deploy stage"
+            }
+        }
+    }
+}
